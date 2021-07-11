@@ -9,24 +9,27 @@ export default function PaymentMethodScreen(props) {
   if (!shippingAddress.address) {
     props.history.push('/shipping');
   }
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState('');
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(savePaymentMethod(paymentMethod));
+   
+    dispatch(()=>savePaymentMethod(paymentMethod));
     props.history.push('/placeorder');
   };
+
   return (
     <div>
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
       <form className="form" onSubmit={submitHandler}>
+          
         <div>
           <h1>Payment Method</h1>
         </div>
         <div>
           <div>
             <input
-              type="radio"
+            type="radio"
               id="paypal"
               value="PayPal"
               name="paymentMethod"

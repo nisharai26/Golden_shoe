@@ -29,7 +29,7 @@ mongoose.connect(url || 5000,
 
 app.use('/api/users/',userRouter);
 app.use('/api/products',productRouter);
-app.use('api/orders',orderRouter);
+app.use('/api/orders', orderRouter);
 app.get("/",(req,res)=>{
     res.send("server is running")
 });

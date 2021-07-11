@@ -15,6 +15,11 @@ export default function PlaceOrderScreen(props) {
   }
 const orderCreate = useSelector(state=>state.orderCreate);
 const {loading,success,error,order} = orderCreate;
+const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
+cart.itemsPrice = toPrice(
+  cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
+);
+cart.totalPrice = cart.itemsPrice;
 const dispatch = useDispatch();
 const placeOrderHandler = () => {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
@@ -47,6 +52,7 @@ const placeOrderHandler = () => {
                 <h2>Payment</h2>
                 <p>
                   <strong>Method:</strong> {cart.paymentMethod}
+                  
                 </p>
               </div>
             </li>
