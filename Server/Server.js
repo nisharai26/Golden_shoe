@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import userRouter from './router/userRouter.js';
 import dotenv from 'dotenv';
 import productRouter from './router/productRouter.js';
+import orderRouter from './router/orderRouter.js';
 dotenv.config()
 
 const app = express();
@@ -18,7 +19,8 @@ mongoose.connect(url || 5000,
   { useNewUrlParser: true,
      useUnifiedTopology: true,
      useCreateIndex:true
-     }
+     },
+   
 );
 
 
@@ -27,6 +29,7 @@ mongoose.connect(url || 5000,
 
 app.use('/api/users/',userRouter);
 app.use('/api/products',productRouter);
+app.use('api/orders',orderRouter);
 app.get("/",(req,res)=>{
     res.send("server is running")
 });
